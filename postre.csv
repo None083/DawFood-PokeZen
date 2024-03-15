@@ -1,0 +1,17 @@
+Nombre,Categoria,Precio,IVA,Cantidad
+Helado de chocolate,HELADO,2.45,IVA_DIEZ,40
+Helado de vainilla,HELADO,2.45,IVA_DIEZ,37
+Bowl frutas del bosque,FRUTA,3.90,IVA_DIEZ,45
+Fruta mixta,FRUTA,2.90,IVA_DIEZ,42
+Tarta de chocolate,TARTA,4.59,IVA_DIEZ,33
+Tarta de queso,TARTA,4.59,IVA_DIEZ,34
+Helado de fresa,HELADO,2.45,IVA_DIEZ,38
+Helado de matcha,HELADO,2.95,IVA_DIEZ,35
+Bowl de frutas tropicales,FRUTA,3.9,IVA_DIEZ,45
+Fruta de la pasión,FRUTA,2.90,IVA_DIEZ,42
+Tarta de manzana,TARTA,4.59,IVA_DIEZ,33
+Tarta de fresa,TARTA,4.59,IVA_DIEZ,34
+Mochi de vainilla,MOCHI,3.59,IVA_DIEZ,30
+Mochi de chocolate,MOCHI,3.59,IVA_DIEZ,30
+Mochi de fresa,MOCHI,3.59,IVA_DIEZ,30
+Mochi de matcha,MOCHI,3.59,IVA_DIEZ,30
