@@ -8,7 +8,7 @@ package pokezen;
  *
  * @author noelia
  */
-public enum CategoriaComida {
+public enum CategoriasComida {
     
     POKE("Poke"),
     WRAP("Wrap"),
@@ -16,7 +16,7 @@ public enum CategoriaComida {
 
     private final String CATEGORIA_COMIDA;
 
-    private CategoriaComida(String CATEGORIA_COMIDA) {
+    private CategoriasComida(String CATEGORIA_COMIDA) {
         this.CATEGORIA_COMIDA = CATEGORIA_COMIDA;
     }
 

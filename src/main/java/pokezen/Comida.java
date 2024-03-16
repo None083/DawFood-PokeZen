@@ -8,9 +8,31 @@ package pokezen;
  *
  * @author noelia
  */
-public abstract class Comida extends Producto {
+public class Comida extends Producto {
     
-    
-    
+    private CategoriasComida categoria;
+
+    public Comida(CategoriasComida categoria, String descripcion, double precio, pokezen.IVA IVA, int stock) {
+        super(descripcion, precio, IVA, stock);
+        this.categoria = categoria;
+    }
+
+    public CategoriasComida getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(CategoriasComida categoria) {
+        this.categoria = categoria;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Comida{");
+        sb.append(super.toString());
+        sb.append("categoria=").append(categoria);
+        sb.append('}');
+        return sb.toString();
+    }
     
 }

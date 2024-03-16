@@ -6,33 +6,33 @@ package pokezen;
 
 /**
  *
- * @author noelia
+ * @author FX506
  */
-public class Bebida extends Producto {
+public class Postre extends Producto {
     
-    private CategoriasBebida categoria;
+    private CategoriasPostre categoria;
 
-    public Bebida(CategoriasBebida categoria, String descripcion, double precio, pokezen.IVA IVA, int stock) {
+    public Postre(CategoriasPostre categoria, String descripcion, double precio, pokezen.IVA IVA, int stock) {
         super(descripcion, precio, IVA, stock);
         this.categoria = categoria;
     }
 
-    public CategoriasBebida getCategoria() {
+    public CategoriasPostre getCategoria() {
         return categoria;
     }
 
-    public void setCategoria(CategoriasBebida categoria) {
+    public void setCategoria(CategoriasPostre categoria) {
         this.categoria = categoria;
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("Bebida{");
+        sb.append("Postre{");
         sb.append(super.toString());
         sb.append("categoria=").append(categoria);
         sb.append('}');
         return sb.toString();
     }
-    
+
 }
