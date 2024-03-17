@@ -12,7 +12,7 @@ public class Bebida extends Producto {
     
     private CategoriasBebida categoria;
 
-    public Bebida(CategoriasBebida categoria, String descripcion, double precio, pokezen.IVA IVA, int stock) {
+    public Bebida(String descripcion, CategoriasBebida categoria, double precio, pokezen.IVA IVA, int stock) {
         super(descripcion, precio, IVA, stock);
         this.categoria = categoria;
     }

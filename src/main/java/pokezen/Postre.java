@@ -12,7 +12,7 @@ public class Postre extends Producto {
     
     private CategoriasPostre categoria;
 
-    public Postre(CategoriasPostre categoria, String descripcion, double precio, pokezen.IVA IVA, int stock) {
+    public Postre(String descripcion, CategoriasPostre categoria, double precio, pokezen.IVA IVA, int stock) {
         super(descripcion, precio, IVA, stock);
         this.categoria = categoria;
     }

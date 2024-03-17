@@ -12,7 +12,7 @@ public class Comida extends Producto {
     
     private CategoriasComida categoria;
 
-    public Comida(CategoriasComida categoria, String descripcion, double precio, pokezen.IVA IVA, int stock) {
+    public Comida( String descripcion, CategoriasComida categoria, double precio, pokezen.IVA IVA, int stock) {
         super(descripcion, precio, IVA, stock);
         this.categoria = categoria;
     }
