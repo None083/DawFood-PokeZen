@@ -21,16 +21,16 @@ public class UtilidadesTPV {
 
     public static ArrayList<Producto> listaProductos() {
         ArrayList<Producto> listaProductos = new ArrayList<>();
-        listaProductos.add(new Comida("Poke de pollo", CategoriasComida.POKE, 
+        listaProductos.add(new Comida("Poke de pollo", CategoriasComida.POKE,
                 11.99, IVA.IVA_DIEZ, 10));
-        listaProductos.add(new Postre("Tarta de queso", CategoriasPostre.TARTA, 
+        listaProductos.add(new Postre("Tarta de queso", CategoriasPostre.TARTA,
                 12.59, IVA.IVA_DIEZ, 14));
         return listaProductos;
     }
-    
-    public static Producto buscarProductoPorID(int id, List<Producto> listaProductos){
+
+    public static Producto buscarProductoPorID(int id, List<Producto> listaProductos) {
         for (Producto p : listaProductos) {
-            if(id == p.getID()){
+            if (id == p.getID()) {
                 return p;
             }
         }
@@ -49,7 +49,7 @@ public class UtilidadesTPV {
         return opcionUsuario;
     }
 
-    public static boolean seleccionarCategoría(TPV tpv) {
+    public static boolean seleccionarTipo(TPV tpv) {
 
         Object[] options = {"Comida", "Bebida", "Postre", "Volver", "Ver cesta"};
 
@@ -58,13 +58,14 @@ public class UtilidadesTPV {
                 JOptionPane.PLAIN_MESSAGE, new ImageIcon("src/main/java/iconos/poke1.png"), options, options[3]);
 
         ImageIcon icono;
-        
+
         switch (opcionElegida) {
             case 0 -> {
                 //Categoría comida
                 icono = new ImageIcon("src/main/java/iconos/bowl1.png");
-                seleccionarSubcategoria(tpv, Subcategoria.POKE,
-                        Subcategoria.WRAP, Subcategoria.LOCO_MOCO, icono);
+                seleccionarCategoria(tpv, CategoriasComida.POKE.getCATEGORIA(),
+                        CategoriasComida.WRAP.getCATEGORIA(),
+                        CategoriasComida.LOCO_MOCO.getCATEGORIA(), icono);
                 return true;
                 //He hecho que devuelva un booleano en todos los case para que 
                 //no haya problemas con el botón volver y repetir la pantalla como se debe.
@@ -73,15 +74,17 @@ public class UtilidadesTPV {
             case 1 -> {
                 //Categoría bebida
                 icono = new ImageIcon("src/main/java/iconos/bebida1.png");
-                seleccionarSubcategoria(tpv, Subcategoria.AGUA,
-                        Subcategoria.CERVEZA, Subcategoria.REFRESCO, icono);
+                seleccionarCategoria(tpv, CategoriasBebida.AGUA.getCATEGORIA(),
+                        CategoriasBebida.CERVEZA.getCATEGORIA(),
+                        CategoriasBebida.REFRESCO.getCATEGORIA(), icono);
                 return true;
             }
             case 2 -> {
                 //Categoría postre
                 icono = new ImageIcon("src/main/java/iconos/helado1.png");
-                seleccionarSubcategoria(tpv, Subcategoria.HELADO,
-                        Subcategoria.FRUTA, Subcategoria.TARTA, icono);
+                seleccionarCategoria(tpv, CategoriasPostre.HELADO.getCATEGORIA(),
+                        CategoriasPostre.FRUTA.getCATEGORIA(),
+                        CategoriasPostre.TARTA.getCATEGORIA(), icono);
                 return true;
             }
             case 3 -> {
@@ -99,25 +102,25 @@ public class UtilidadesTPV {
 
     //Le paso por parámetros 3 subcategorías para poder diferenciar de que categoría es 
     //en el método seleccionarCategoría
-    public static void seleccionarSubcategoria(TPV tpv, Subcategoria s1, Subcategoria s2, Subcategoria s3, ImageIcon icono) {
+    public static void seleccionarCategoria(TPV tpv, String c1, String c2, String c3, ImageIcon icono) {
 
-        Object[] options = {s1, s2, s3, "Volver", "Ver cesta"};
+        Object[] options = {c1, c2, c3, "Volver", "Ver cesta"};
         int opcionElegida = JOptionPane.showOptionDialog(null,
                 "Escoge una subcategoría", "TPV - Poke Zen", JOptionPane.DEFAULT_OPTION,
                 JOptionPane.PLAIN_MESSAGE, icono, options, options[3]);
 
         switch (opcionElegida) {
             case 0 -> {
-                
-                seleccionarProducto(tpv, s1, icono);
+
+                seleccionarProducto(tpv, c1, icono);
             }
             case 1 -> {
 
-                seleccionarProducto(tpv, s2, icono);
+                seleccionarProducto(tpv, c2, icono);
             }
             case 2 -> {
 
-                seleccionarProducto(tpv, s3, icono);
+                seleccionarProducto(tpv, c3, icono);
             }
             case 4 -> {
                 verCesta(tpv);
@@ -125,12 +128,12 @@ public class UtilidadesTPV {
         }
     }
 
-    private static void seleccionarProducto(TPV tpv, Subcategoria subcat, ImageIcon icono) {
+    private static void seleccionarProducto(TPV tpv, String categoria, ImageIcon icono) {
 
         //Obtenemos nuestra carta completa
-        Map<Integer, Producto> baseDatosProductos = tpv.getMenuProductos();
+        List<Producto> baseDatosProductos = tpv.getMenuProductos();
 
-        //Lista para guardar qué productos se van a mostrar dendiendo 
+        //Lista para guardar qué productos se van a mostrar dependiendo 
         //de si hay stock, las categorías y subcategorías
         ArrayList<Producto> productosAMostrar = new ArrayList<>();
 
@@ -140,14 +143,27 @@ public class UtilidadesTPV {
         //Miramos que el stock de los productos no sea 0 o menor
         //y que coincidan con la subcategoría escogida, 
         //para añadirlos a las listas
-        for (int i = 0; i < baseDatosProductos.size(); i++) {
-            if (baseDatosProductos.get(i).getStock() > 0
-                    && baseDatosProductos.get(i).getSubcategoria().equals(subcat)) {
-                productosAMostrar.add(baseDatosProductos.get(i));
-                nombreProductosAMostrar.add(baseDatosProductos.get(i).getDescripcion());
+        for (Producto p : baseDatosProductos) {
+            if (p instanceof Comida) {
+                if (p.getStock() > 0 && p.getCategoria().equals(categoria)) {
+                    productosAMostrar.add(p);
+                    nombreProductosAMostrar.add(p.getDescripcion());
+                }
+
+            } else if (p instanceof Bebida) {
+
+            } else if (p instanceof Postre) {
+
             }
         }
 
+//        for (int i = 0; i < baseDatosProductos.size(); i++) {
+//            if (baseDatosProductos.get(i).getStock() > 0
+//                    && baseDatosProductos.get(i).getSubcategoria().equals(categoria)) {
+//                productosAMostrar.add(baseDatosProductos.get(i));
+//                nombreProductosAMostrar.add(baseDatosProductos.get(i).getDescripcion());
+//            }
+//        }
         String opcionElegidaProducto = (String) JOptionPane.showInputDialog(null,
                 "Escoge un producto", "TPV - Poke Zen", JOptionPane.QUESTION_MESSAGE,
                 icono, nombreProductosAMostrar.toArray(),
@@ -208,9 +224,9 @@ public class UtilidadesTPV {
             } while (numProductos > p.getStock());
 
             //Version cesta map
-            if(tpv.getCesta().containsKey(p.getID())){
+            if (tpv.getCesta().containsKey(p.getID())) {
                 tpv.getCesta().put(p.getID(), tpv.getCesta().get(p) + numProductos);
-            }else{
+            } else {
                 tpv.getCesta().put(p.getID(), numProductos);
             }
         }
@@ -225,15 +241,15 @@ public class UtilidadesTPV {
         //su precio y la cantadidad,
         //también el precio total de la compra con iva y sin iva
         String infoProductosCesta = "PRODUCTOS EN LA CESTA \n \n";
-        
+
         //Version cesta map
         for (Map.Entry<Integer, Integer> entrada : tpv.getCesta().entrySet()) {
             infoProductosCesta += tpv.getMenuProductos().get(entrada.getKey()).getDescripcion()
                     + "     Cant.: " + entrada.getValue()
                     + "     " + tpv.getMenuProductos().get(entrada.getKey()).getPrecio() + "€ \n";
-            
+
             totalPagar += tpv.getMenuProductos().get(entrada.getKey()).getPrecio() * entrada.getValue();
-            
+
             totalConIva += tpv.getMenuProductos().get(entrada.getKey()).getPrecio()
                     * tpv.getMenuProductos().get(entrada.getKey()).getIVA().getPORCENTAJE_IVA()
                     * entrada.getValue();
@@ -311,7 +327,8 @@ public class UtilidadesTPV {
                                         Integer.parseInt(anyo.getText()));
                         excepcion = false;
 
-                    } catch (NumberFormatException nfe) {}
+                    } catch (NumberFormatException nfe) {
+                    }
 
                     //Se comprueba que fecha y el cvv son válidos 
                     //(son los que están guardados en la base de datos)
@@ -335,7 +352,7 @@ public class UtilidadesTPV {
 
                             //También se resta la cantidad comprada al stock de la base de datos 
                             for (Map.Entry<Integer, Integer> entrada : tpv.getCesta().entrySet()) {
-                                if(tpv.getMenuProductos().containsKey(entrada.getKey())){
+                                if (tpv.getMenuProductos().containsKey(entrada.getKey())) {
                                     tpv.getMenuProductos().get(entrada.getKey())
                                             .setStock(tpv.getMenuProductos()
                                                     .get(entrada.getKey())

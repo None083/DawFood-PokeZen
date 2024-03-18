@@ -14,14 +14,14 @@ public enum CategoriasComida {
     WRAP("Wrap"),
     LOCO_MOCO("Loco Moco");
 
-    private final String CATEGORIA_COMIDA;
+    private final String CATEGORIA;
 
-    private CategoriasComida(String CATEGORIA_COMIDA) {
-        this.CATEGORIA_COMIDA = CATEGORIA_COMIDA;
+    private CategoriasComida(String CATEGORIA) {
+        this.CATEGORIA = CATEGORIA;
     }
 
-    public String getCATEGORIA_COMIDA() {
-        return CATEGORIA_COMIDA;
+    public String getCATEGORIA() {
+        return CATEGORIA;
     }
     
 }

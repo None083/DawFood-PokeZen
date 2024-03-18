@@ -25,7 +25,7 @@ public class TPV {
     private LocalTime horaSistema;
     private String direccion;
     private String password;
-    private List menuProductos;
+    private ArrayList<Producto> menuProductos;
     private Carrito carrito;
     private ArrayList<Ticket> baseDatosTicket;
 
@@ -44,7 +44,7 @@ public class TPV {
         this.ID = UUID.randomUUID();
     }
 
-    public List getMenuProductos() {
+    public List<Producto> getMenuProductos() {
         return menuProductos;
     }
 
@@ -144,7 +144,7 @@ public class TPV {
                 }
                 case 1 -> {
                     admin = false;
-                    usuario = UtilidadesTPV.seleccionarCategoría(this);
+                    usuario = UtilidadesTPV.seleccionarTipo(this);
                 }
                 case 2 -> {
                     usuario = false;

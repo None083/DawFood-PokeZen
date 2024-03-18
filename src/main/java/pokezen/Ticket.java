@@ -13,7 +13,7 @@ import java.util.UUID;
 
 /**
  *
- * @author francisco
+ * @author noelia
  */
 public class Ticket {
 
@@ -77,7 +77,7 @@ public class Ticket {
         this.horaOperacion = horaOperacion;
     }
 
-    public String toStringChulo() {
+    public String toStringChulo(TPV tpv) {
         String ticket = """
                         ------------------------------------------------------------------
                                               Restaurante PokéZen
@@ -93,10 +93,13 @@ public class Ticket {
                 this.horaOperacion.format(DateTimeFormatter.ofPattern("H:m")));
 
         for (Map.Entry<Integer, Integer> entrada : this.cesta.entrySet()) {
+            
+            Producto p = UtilidadesTPV.buscarProductoPorID(entrada.getKey(), tpv.getMenuProductos());
+            
             ticket += """
                       %s        %.2f€        %d       %.2f%%
-                      """.formatted(entrada.getKey().getDescripcion(), entrada.getKey().getPrecio(), 
-                              entrada.getValue(),entrada.getKey().getIVA().getPORCENTAJE_IVA());
+                      """.formatted(p.getDescripcion(), p.getPrecio(), 
+                              entrada.getValue(),p.getIVA().getPORCENTAJE_IVA());
         }
         ticket += """
                 ------------------------------------------------------------------
