@@ -125,21 +125,21 @@ public class TPV {
                     usuario = false;
 
                     if (admin) {
-                        admin = UtilidadesAdmin.modoMantenimiento(this);
+                        //admin = UtilidadesAdmin.modoMantenimiento(this);
                     } else {
-                        if (UtilidadesAdmin.pedirPassword(this)) {
-
-                            admin = UtilidadesAdmin.modoMantenimiento(this);
-                        } else {
-                            String[] opciones = {"Aceptar"};
-
-                            JOptionPane.showOptionDialog(null,
-                                    "La contraseña no es correcta, vuelve a intentar",
-                                    "TPV - Poke Zen", JOptionPane.DEFAULT_OPTION,
-                                    JOptionPane.QUESTION_MESSAGE,
-                                    new ImageIcon("src/main/java/iconos/admin1.png"),
-                                    opciones, opciones[0]);
-                        }
+//                        if (UtilidadesAdmin.pedirPassword(this)) {
+//
+//                            admin = UtilidadesAdmin.modoMantenimiento(this);
+//                        } else {
+//                            String[] opciones = {"Aceptar"};
+//
+//                            JOptionPane.showOptionDialog(null,
+//                                    "La contraseña no es correcta, vuelve a intentar",
+//                                    "TPV - Poke Zen", JOptionPane.DEFAULT_OPTION,
+//                                    JOptionPane.QUESTION_MESSAGE,
+//                                    new ImageIcon("src/main/java/iconos/admin1.png"),
+//                                    opciones, opciones[0]);
+//                        }
                     }
                 }
                 case 1 -> {
