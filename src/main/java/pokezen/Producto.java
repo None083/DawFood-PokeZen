@@ -26,6 +26,9 @@ public abstract class Producto {
         this.stock = stock;
     }
 
+    public Producto() {
+    }
+
     public int getID() {
         return ID;
     }

@@ -17,6 +17,9 @@ public class Comida extends Producto {
         this.categoria = categoria;
     }
 
+    public Comida() {
+    }
+    
     public CategoriasComida getCategoria() {
         return categoria;
     }
@@ -30,7 +33,7 @@ public class Comida extends Producto {
         StringBuilder sb = new StringBuilder();
         sb.append("Comida{");
         sb.append(super.toString());
-        sb.append("categoria=").append(categoria);
+        sb.append(", categoria=").append(categoria);
         sb.append('}');
         return sb.toString();
     }

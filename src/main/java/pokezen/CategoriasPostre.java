@@ -12,7 +12,6 @@ public enum CategoriasPostre {
     
     HELADO("Helado"),
     FRUTA("Fruta"),
-    MOCHI("Mochi"),
     TARTA("Tarta");
     
     private final String CATEGORIA;

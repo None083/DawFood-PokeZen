@@ -19,17 +19,17 @@ public class Ticket {
 
     private UUID ID;
     private int numPedido;
-    Map<Integer, Integer> cesta;
+    Map<Integer, Integer> carrito;
     private double importeTotal;
     private LocalDate fechaOperacion;
     private LocalTime horaOperacion;
     private static int contadorNumPedido = 0;
 
-    public Ticket(Map<Integer, Integer> cesta, double importeTotal, LocalDate fechaOperacion, LocalTime horaOperacion) {
+    public Ticket(Map<Integer, Integer> carrito, double importeTotal, LocalDate fechaOperacion, LocalTime horaOperacion) {
         this.ID = UUID.randomUUID();
         contadorNumPedido++;
         this.numPedido = contadorNumPedido;
-        this.cesta = cesta;
+        this.carrito = carrito;
         this.importeTotal = importeTotal;
         this.fechaOperacion = fechaOperacion;
         this.horaOperacion = horaOperacion;
@@ -49,8 +49,8 @@ public class Ticket {
         return numPedido;
     }
 
-    public Map<Integer, Integer> getCesta() {
-        return cesta;
+    public Map<Integer, Integer> getCarrito() {
+        return carrito;
     }
 
     public double getImporteTotal() {
@@ -92,7 +92,7 @@ public class Ticket {
                 this.fechaOperacion.format(DateTimeFormatter.ofPattern("d/M/uuuu")),
                 this.horaOperacion.format(DateTimeFormatter.ofPattern("H:m")));
 
-        for (Map.Entry<Integer, Integer> entrada : this.cesta.entrySet()) {
+        for (Map.Entry<Integer, Integer> entrada : this.carrito.entrySet()) {
             
             Producto p = UtilidadesTPV.buscarProductoPorID(entrada.getKey(), tpv.getMenuProductos());
             

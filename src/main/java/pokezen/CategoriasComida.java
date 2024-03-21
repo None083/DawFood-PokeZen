@@ -24,4 +24,6 @@ public enum CategoriasComida {
         return CATEGORIA;
     }
     
+    
+    
 }

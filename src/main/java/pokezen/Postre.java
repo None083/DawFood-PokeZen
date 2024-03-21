@@ -17,6 +17,9 @@ public class Postre extends Producto {
         this.categoria = categoria;
     }
 
+    public Postre() {
+    }
+
     public CategoriasPostre getCategoria() {
         return categoria;
     }
@@ -30,7 +33,7 @@ public class Postre extends Producto {
         StringBuilder sb = new StringBuilder();
         sb.append("Postre{");
         sb.append(super.toString());
-        sb.append("categoria=").append(categoria);
+        sb.append(", categoria=").append(categoria);
         sb.append('}');
         return sb.toString();
     }

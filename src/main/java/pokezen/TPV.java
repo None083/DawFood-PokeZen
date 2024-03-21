@@ -25,7 +25,7 @@ public class TPV {
     private LocalTime horaSistema;
     private String direccion;
     private String password;
-    private ArrayList<Producto> menuProductos;
+    private List<Producto> menuProductos;
     private Carrito carrito;
     private ArrayList<Ticket> baseDatosTicket;
 
@@ -35,7 +35,7 @@ public class TPV {
         this.horaSistema = LocalTime.now();
         this.direccion = direccion;
         this.password = UtilidadesAdmin.crearPassword();
-        this.menuProductos = new ArrayList<>();
+        this.menuProductos = UtilidadesTPV.listaProductos("productos.csv");
         this.carrito = new Carrito();
         this.baseDatosTicket = new ArrayList<>();
     }
@@ -125,21 +125,21 @@ public class TPV {
                     usuario = false;
 
                     if (admin) {
-                        //admin = UtilidadesAdmin.modoMantenimiento(this);
+                        admin = UtilidadesAdmin.modoMantenimiento(this);
                     } else {
-//                        if (UtilidadesAdmin.pedirPassword(this)) {
-//
-//                            admin = UtilidadesAdmin.modoMantenimiento(this);
-//                        } else {
-//                            String[] opciones = {"Aceptar"};
-//
-//                            JOptionPane.showOptionDialog(null,
-//                                    "La contraseña no es correcta, vuelve a intentar",
-//                                    "TPV - Poke Zen", JOptionPane.DEFAULT_OPTION,
-//                                    JOptionPane.QUESTION_MESSAGE,
-//                                    new ImageIcon("src/main/java/iconos/admin1.png"),
-//                                    opciones, opciones[0]);
-//                        }
+                        if (UtilidadesAdmin.pedirPassword(this)) {
+
+                            admin = UtilidadesAdmin.modoMantenimiento(this);
+                        } else {
+                            String[] opciones = {"Aceptar"};
+
+                            JOptionPane.showOptionDialog(null,
+                                    "La contraseña no es correcta, vuelve a intentar",
+                                    "TPV - Poke Zen", JOptionPane.DEFAULT_OPTION,
+                                    JOptionPane.QUESTION_MESSAGE,
+                                    new ImageIcon("src/main/java/iconos/admin1.png"),
+                                    opciones, opciones[0]);
+                        }
                     }
                 }
                 case 1 -> {

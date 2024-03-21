@@ -12,8 +12,6 @@ public enum CategoriasBebida {
     
     AGUA("Agua"),
     CERVEZA("Cerveza"),
-    TE("Té"),
-    ZUMO("Zumo"),
     REFRESCO("Refresco");
     
     private final String CATEGORIA;

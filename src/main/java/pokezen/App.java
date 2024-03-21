@@ -13,7 +13,8 @@ public class App {
     public static void main(String[] args) {
         
         TPV tpv1 = new TPV("Estepona");
-        tpv1.encenderTPV(); 
+        tpv1.encenderTPV();
+        
         
     }
 }

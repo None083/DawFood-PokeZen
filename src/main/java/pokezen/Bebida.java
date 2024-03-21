@@ -17,6 +17,9 @@ public class Bebida extends Producto {
         this.categoria = categoria;
     }
 
+    public Bebida() {
+    }
+    
     public CategoriasBebida getCategoria() {
         return categoria;
     }
@@ -30,7 +33,7 @@ public class Bebida extends Producto {
         StringBuilder sb = new StringBuilder();
         sb.append("Bebida{");
         sb.append(super.toString());
-        sb.append("categoria=").append(categoria);
+        sb.append(", categoria=").append(categoria);
         sb.append('}');
         return sb.toString();
     }
